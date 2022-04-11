@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculater</title>
+    <link rel="stylesheet"  href="./agev.css" >
+</head>
+<body>
+    <h1>This is an Age Calculator</h1>
+    <h3>Define Your Exact Age</h3>
+    <div class="container">
+        <input type="datetime-local" id="dob">
+        <button id="submit">Calculate Age</button>
+        <p id="year"></p>
+        <p id="month"></p>
+        <p id="week"></p>
+        <p id="day"></p>
+        <p id="hour"></p>
+        <p id="minute"></p>
+        <p id="second"></p>
+    </div>
+
+    <script>
+        document.querySelector("#submit").addEventListener("click",function(){
+            const update = function(){
+                let dob = document.querySelector("#dob").value,
+                    day = new Date(dob),
+                    time = day.getTime(),
+                    today = new Date(),
+                    timenow = today.getTime(),
+                    value = timenow-time,
+                    sec = Math.floor(value/1000),
+                    min = Math.floor(value/(1000*60)),
+                    hour= Math.floor(value/(1000*60*60)),
+                    days= Math.floor(value/(1000*60*60*24)),
+                    week= Math.floor(value/(1000*60*60*24*7)),
+                    month= Math.floor(value/(1000*60*60*24*30.4375)),
+                    year= Math.floor(value/(1000*60*60*24*365.25)),
+                
+            insert = function(x,y){
+            document.querySelector(x).innerHTML = y;
+            }
+
+            insert("#year",year + "-Years");
+            insert("#month",month + "-Months");
+            insert("#week",week + "-Weeks");
+            insert("#day",days + "-Days");
+            insert("#hour",hour + "-Hours");
+            insert("#minute",min + "-Minutes");
+            insert("#second",sec + "-Seconds");
+            }
+            setInterval(update,1000);
+            
+        })
+    </script>
+</body>
+</html>
